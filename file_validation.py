@@ -21,7 +21,7 @@ def CheckFileExt(filename): # Requires a path to file
 
     if ext not in file_exts:
         print(f"ERROR: Extension {ext} not supported.")
-        print(f"INFO: Currently supported extension are: {file_exts}")
+        print(f"INFO: Currently supported extensions are: {file_exts}")
         raise ValueError
 
 def GetValidFile():
