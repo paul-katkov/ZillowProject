@@ -1,25 +1,33 @@
 import pandas as pd
-from pandas.api.types import infer_dtype
+import dateutil.parser
 
 def get_type(val):
-
+    
     try:
-        int(val)
+        dateutil.parser.parse(val)
 
     except:
 
         try:
-            float(val)
+            int(val)
 
         except:
-            return "string"
+
+            try:
+                float(val)
+
+            except:
+                return "string"
+
+            else:
+                return "float64"
 
         else:
-            return "float64"
+            return "Int64" 
+            # The Int actually needs to be capitalized because converting nulls to int (lowercase) causes the data type to become float in astype()
 
     else:
-        return "Int64" 
-        # The Int actually needs to be capitalized because converting nulls to int (lowercase) causes the data type to become float in astype()
+        return "datetime64"
 
 def convert_col_types(df):
 
